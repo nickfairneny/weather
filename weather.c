@@ -42,10 +42,11 @@ int main(int argc, char *argv[])
     char *city;
     char *datetime;
     char *rawtime;
+    char *tomorrowhigh;
+    char *tomorrowlow;
     
     while (fgets(line, 20000, f) != NULL)
     {
-        
          //wind direction
         if (strstr(line, "windDir")!=NULL) 
         { 
@@ -143,20 +144,27 @@ int main(int argc, char *argv[])
         }
        
     }
-    
+
     time_t t;
     t = (time_t) atoll(rawtime);
     struct tm *info;
     info = localtime( &t );
     
-    //printf("time test: %s", asctime(info));
-    
-    
-     /*
     char st1 = state[0];
     char st2 = state[1];
-    printf("%c%c\n", toupper(st1), toupper(st2));
     
+    printf("Observation time: %s", asctime(info));
+    printf("Location: %s, %c%c\n", city, toupper(st1), toupper(st2));
+    printf("Temperature: %s F\n", temperature);
+    printf("Humidity: %s %%\n", humidity);
+    printf("Wind: %s %s MPH\n", winddirection, windspeedstart);
+    
+   
+    
+    /* 
+    printf("%s, %s\n", tomorrowhigh, tomorrowlow);
+    printf("time test: %s", asctime(info));
+    printf("%c%c\n", toupper(st1), toupper(st2));
     printf("WINDSPEED: %s\n", windspeedstart);
     printf("WIND DIRECTION: %s\n", winddirection);
     printf("HUMIDITY: %s %%\n", humidity);
